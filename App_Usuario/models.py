@@ -26,9 +26,26 @@ class Modelo_Administrador(Modelo_Usuario):
 # Criando classe Endereço | Diretemente ligada com o cliente (indica sua propriedade)
 class Modelo_Endereco(models.Model):
     ID = models.AutoField(primary_key=True)
-    CEP = models.CharField(max_length=9)
-    Municipio = models.CharField(max_length=50)
-    Distrito = models.CharField(max_length=50)
+    
+    # Definição de Municipio (choices)
+    Guanambi = "Guanambi"
+    Escolha_Municipio = {
+        Guanambi: "Guanambi"
+    }
+    Municipio = models.CharField(max_length=50, choices=Escolha_Municipio, default="Guanambi")
+
+    # Definição de Distrito (choices)
+    if(Municipio == "Guanambi"):
+        Ceraima = "Ceraima"
+        Escolha_Distrito = {
+            Ceraima: "Ceraima"
+        }
+    Distrito = models.CharField(max_length=50, choices=Escolha_Distrito, default="Ceraima")
+
+    # Definição de CEP
+    if(Distrito == "Ceraima"):
+        CEP = "46430-000" #CEP de Ceraima
+
     Nome_Da_Propriedade = models.CharField(max_length=100)
     Complemento = models.TextField(max_length=50)
     Imagens = models.ImageField(upload_to='Arquivos_Static/Imagens_ModeloEndereco')
