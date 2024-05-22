@@ -1,51 +1,24 @@
 #Bibliotecas
 from django.db import models
+import django.contrib.auth
 
 
 # Criando classe generalizada (Usuário)
-class Modelo_Usuario(models.Model):
-    Nome = models.CharField(max_length=50)
-    Sobrenome = models.CharField(max_length=100)
-    Email = models.EmailField(max_length=200)
-    Senha = models.CharField()
-    CPF = models.IntegerField(14)
-    Data_De_Nascimento = models.DateField()
-
-    class Meta:
-        abstract = True  # Define o modelo como abstrato para evitar criação de tabela no banco de dados
-
-# Criando classe filho (Cliente)
-class Modelo_Cliente(Modelo_Usuario):
-    ID = models.AutoField(primary_key=True)
-    Endereco = models.OneToOneField("Modelo_Endereco", on_delete=models.CASCADE)
-
-# Criando classe filho (Administrador)
-class Modelo_Administrador(Modelo_Usuario):
-    ID = models.AutoField(primary_key=True)
+class Classe_Usuario(models.Model):
+    nome = models.CharField(max_length=50)
+    sobrenome = models.CharField(max_length=100)
+    email = models.EmailField(max_length=200)
+    senha = models.CharField(max_length=20)
+    cpf = models.IntegerField(14)
+    dataDeNascimento = models.DateField()
 
 # Criando classe Endereço | Diretemente ligada com o cliente (indica sua propriedade)
-class Modelo_Endereco(models.Model):
-    ID = models.AutoField(primary_key=True)
-    
-    # Definição de Municipio (choices)
-    Guanambi = "Guanambi"
-    Escolha_Municipio = {
-        Guanambi: "Guanambi"
-    }
-    Municipio = models.CharField(max_length=50, choices=Escolha_Municipio, default="Guanambi")
-
-    # Definição de Distrito (choices)
-    if(Municipio == "Guanambi"):
-        Ceraima = "Ceraima"
-        Escolha_Distrito = {
-            Ceraima: "Ceraima"
-        }
-    Distrito = models.CharField(max_length=50, choices=Escolha_Distrito, default="Ceraima")
-
-    # Definição de CEP
-    if(Distrito == "Ceraima"):
-        CEP = "46430-000" #CEP de Ceraima
-
-    Nome_Da_Propriedade = models.CharField(max_length=100)
-    Complemento = models.TextField(max_length=50)
-    Imagens = models.ImageField(upload_to='Arquivos_Static/Imagens_ModeloEndereco')
+class Classe_Endereco(models.Model):
+    id = models.AutoField(primary_key=True)
+    usuario = models.ForeignKey(Classe_Usuario,  on_delete=models.CASCADE)
+    municipio = models.CharField(max_length=50, default="Guanambi")
+    distrito = models.CharField(max_length=50, default="Ceraima")
+    cep = models.IntegerField(9, default=46433.000)
+    nomeDaPropriedade = models.CharField(max_length=100)
+    complemento = models.TextField(max_length=50)
+    imagens = models.ImageField(upload_to='Arquivos_Static/Imagens_ModeloEndereco')
