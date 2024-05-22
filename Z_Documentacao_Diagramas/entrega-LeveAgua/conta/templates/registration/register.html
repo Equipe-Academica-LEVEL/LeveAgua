@@ -1,0 +1,40 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'login-register/register.css' %}" />
+  </head>
+  <body>
+    <section class="container">
+      <section class="box informacoes">
+        <div class="img-logo">
+          <img src="{% static 'login-register/logo.png' %}" alt="" />
+        </div>
+        <div class="texto">
+          <h1>Lorem Ipsum Dolor</h1>
+        </div>
+        <div class="button-login-register">
+          <a href="/accounts/login">Entrar</a>
+        </div>
+      </section>
+      <section class="box formulario">
+        <form action="" method="post">
+          <h1>Registre-se</h1>
+          {% csrf_token %} {{form.as_p}}
+          <input type="submit" value="Cadastrar" />
+        </form>
+      </section>
+    </section>
+  </body>
+</html>
