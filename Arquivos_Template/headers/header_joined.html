@@ -1,0 +1,40 @@
+{% load static %}
+<nav class="nav-bar">
+    <div class="logo">
+        <img src="{% static 'imagens/logo/logo-horizontal-small.png' %}" alt="LeveAgua">
+    </div>
+
+    <div class="nav-list">
+        <ul>
+            <li class="nav-item"><a href="#" class="nav-link"> Inicio </a></li>
+            <li class="nav-item"><a href="#" class="nav-link"> Serviços </a></li>
+            <li class="nav-item"><a href="#" class="nav-link"> Sobre Nós </a></li>
+            <li class="nav-item"><a href="#" class="nav-link"> Contato </a></li>
+        </ul>
+    </div>
+
+    <div class="login-register-button">
+        <button class="register-button"><a href="/painel"> Painel </a></button>
+        <button class="login-button"><a href="/usuario"> Perfil </a></button>
+    </div>
+
+    <div class="mobile-menu-icon">
+        <button onclick="menuShow()">
+            <img class="icon" src="{% static 'imagens/icons/menu/menu.png' %}" alt="">
+        </button>
+    </div>
+</nav>
+
+<div class="mobile-menu">
+    <ul>
+        <li class="nav-item"><a href="#" class="nav-link"> Inicio </a></li>
+        <li class="nav-item"><a href="#" class="nav-link"> Serviços </a></li>
+        <li class="nav-item"><a href="#" class="nav-link"> Sobre Nós </a></li>
+        <li class="nav-item"><a href="#" class="nav-link"> Contato </a></li>
+    </ul>
+
+    <div class="login-register-button">
+        <button class="register-button"><a href="/painel"> Painel </a></button>
+        <button class="login-button"><a href="/usuario"> Perfil </a></button>
+    </div>
+</div>

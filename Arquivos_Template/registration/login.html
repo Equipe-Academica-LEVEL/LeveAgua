@@ -1,0 +1,46 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'styles/usuario/login.css' %}" />
+  </head>
+  <body>
+    <a class="link-voltar" href="../../">
+      <svg class="voltar" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    </a>
+    <section class="container">
+      <section class="box informacoes">
+        <div class="img-logo">
+          <img src="{% static 'imagens/logo/logo-horizontal-small.png' %}" alt="" />
+        </div>
+        <div class="texto">
+          <h1>Lorem Ipsum Dolor</h1>
+        </div>
+        <div class="button-login-register">
+          <a href="/usuario/registrar">Registre-se</a>
+        </div>
+      </section>
+      <section class="box formulario">
+        <form action="" method="post">
+          <h1>Entrar</h1>
+          {% csrf_token %} {{form.as_p}}
+          <input type="submit" value="Entrar" />
+          <span>
+            <a href="">Esqueceu a senha? </a>
+          </span>
+        </form>
+      </section>
+    </section>
+  </body>
+</html>

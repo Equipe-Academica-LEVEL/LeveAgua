@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usuarios', # <- App Instalado
     'consumo_agua', # <- App Instalado
-    'irrigacao' # <- App Instalado
+    'irrigacao', # <- App Instalado
+    'features', # <- App Instalado
 ]
 
 MIDDLEWARE = [
@@ -121,11 +122,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "Arquivos_Static-OS")
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'Arquivos_Static')
+    os.path.join(BASE_DIR, "Arquivos_Static")
 ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Redirecionamento Login / Logout
+
+LOGIN_REDIRECT_URL = '/painel'
+LOGOUT_REDIRECT_URL = '/usuario/entrar'

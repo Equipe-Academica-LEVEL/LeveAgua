@@ -4,26 +4,19 @@
 
 # -------------------------------------------------------------------------------------------------------------------------------
 # IMPORTAÇÕES
-from typing import Any
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from .models import Usuario, Endereco
 
 # -------------------------------------------------------------------------------------------------------------------------------
 # FORMULÁRIOS
-class UsuarioForm():
 
-# -------------------------------------------------------------------------------------------------------------------------------
-""" 
-class appUsarioForm(forms.ModelForm):
+class UsuarioForm(UserCreationForm):
+    class Meta:
+        model = Usuario
+        fields = ['username','nome', 'sobrenome', 'cpf', 'email', 'data_nascimento','password1', 'password2']
 
-    #widgets forms
-
-    def clean_email(self):
-        super().clean_email()
-
-        self.username = self.email
-
-        return self
-
-    def save(self):
-
-        self.username = self.email """
+class EnderecoForm(forms.ModelForm):
+    class Meta:
+        model = Endereco
+        fields = ['cep', 'municipio', 'estado', 'nome_da_propriedade', 'complemento', 'imagens', 'usuario']

@@ -12,6 +12,7 @@ from usuarios.models import Usuario # Importa a classe "Usuario" criada no model
 class Consumo(models.Model): # Classe criada a partir do padrão django "models.Model"
     litros = models.BigIntegerField() # "models.BigIntegerField" é utilizado para grandes dados numéricos
     data = models.DateTimeField() # "models.DateTimeField" é utilizado para armazenar data e hora
+    #ligar ao usuario
 
 class FaturaAgua(models.Model): # Classe criada a partir do padrão django "models.Model"
     valor = models.FloatField() # Determina o valor em R$
@@ -21,6 +22,7 @@ class FaturaAgua(models.Model): # Classe criada a partir do padrão django "mode
     dataDeVencimento = models.DateField()
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='faturas') # "Usuario, on_delete=models.CASCADE" significa que a fatura de água correspondente ao usuário será apagado caso o usuário seja removido
 
+#não armazena este tipo de informação, se calcula!!!
 class RelatorioDeConsumo(models.Model): # Classe criada a partir do padrão django "models.Model"
     periodo = models.DurationField() # "models.DurationField" determina um intervalo de tempo
     modelo = models.CharField(max_length=255)

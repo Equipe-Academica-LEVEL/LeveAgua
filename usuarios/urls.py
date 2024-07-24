@@ -2,16 +2,19 @@
 # | Gerenciamento de Informações dos Usuarios e Endereços | #
 # \-------------------------------------------------------/ #
 
+# -------------------------------------------------------------------------------------------------------------------------------
+# IMPORTAÇÕES
+from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
+from . import views # Importando a views para urls.py
 
-# Importando a views para urls.py
-from . import views
-
-# Define as URLS do Usuario
+# -------------------------------------------------------------------------------------------------------------------------------
+# LINKS
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('entrar/', views.entrar, name='entrar'),
-    path('cadastrar/', views.cadastrarUsuario, name='cadastrar'),
+    path('', views.painelUsuario, name='index'),
+    path('entrar/', LoginView.as_view(), name='entrar'),
+    path('registrar/', views.registrarUsuario, name='cadastrar'),
     path('alterar/', views.alterarUsuario, name='alterar'),
     path('excluir/', views.excluirUsuario, name='excluir'),
+    path('sair/', LogoutView.as_view(next_page='/painel/'), name='sair'),
 ]

@@ -14,3 +14,4 @@ class ControleDeIrrigacao(models.Model): # Classe criada a partir do padrão dja
     tolerancia_litros = models.BigIntegerField() # "models.BigIntegerField" é utilizado para grandes dados numéricos
     tolerancia_tempo = models.BigIntegerField() # ~ ~ ~ ~ ~ ~
     consumo = models.ForeignKey(Consumo, on_delete=models.CASCADE, related_name='controle') # "Consumo, on_delete=models.CASCADE" significa que o Controle de Irrigação correspondente ao Consumo será apagado caso o Consumo seja removido
+    

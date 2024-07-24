@@ -1,0 +1,18 @@
+{% load static %}
+<nav class="header-bar">
+    <div class="logo">
+        <div class="mobile-menu-icon">
+            <button onclick="menuShow()">
+                <img class="icon-menu" src="{% static 'imagens/icons/menu/menu-verde.png' %}" alt="">
+            </button>
+        </div>
+        <img src="{% static 'imagens/logo/logo-horizontal-small-verde.png' %}" alt="LeveAgua">
+    </div>
+
+    <div class="perfil-notificacao">
+        <img class="notificacao" src="{% static 'imagens/icons/bell.png' %}" alt="">
+        <div class="perfil">
+            <img class="user-icon" src="{% static 'imagens/icons/user.png' %}" alt="">
+        </div>
+    </div>
+</nav>

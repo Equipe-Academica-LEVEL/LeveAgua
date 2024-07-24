@@ -1,0 +1,150 @@
+:root{
+    --cor-fundo-verde: #007A53;
+}
+
+header{
+    background-color: var(--cor-fundo-verde);
+    border-bottom: 1px solid white;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+.nav-bar{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 3rem;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo > img{
+    width: 8rem;
+}
+
+.nav-list{
+    display: flex;
+    align-items: center;
+}
+
+.nav-list > ul{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 1rem;
+}
+
+.nav-link{
+    text-decoration: none;
+    font-size: 1.15rem;
+    color: white;
+    font-weight: 400;
+}
+
+.login-register-button{
+    display: flex;
+    text-align: center;
+    gap: 1rem;
+}
+
+.login-register-button > button{
+    border: none;
+    background-color: transparent;
+}
+
+.login-register-button > button > a{
+    text-decoration: none;
+    font-size: 1.15rem;
+    color: white;
+    font-weight: 400;
+}
+
+.login-button > a{
+    border: 1px solid white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+/* Responsividade */
+
+.mobile-menu{
+    display: none;
+}
+
+.mobile-menu-icon{
+    display: none;
+}
+
+.mobile-menu-icon > button{
+    background-color: transparent;
+    border: none;
+}
+
+.icon{
+    width: 2rem;
+}
+
+@media screen and (max-width: 900px){
+    .nav-bar{
+        padding: 0.5rem 2rem;
+    }
+
+    .nav-item{
+        display: none;
+    }
+
+    .login-register-button{
+        display: none;
+    }
+
+    .mobile-menu-icon{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .mobile-menu > ul{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .mobile-menu .nav-item{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .mobile-menu .login-register-button{
+        display: block;
+        margin: 2rem 0rem;
+    }
+
+    .mobile-menu .login-register-button button{
+        width: 90%;
+    }
+
+    .mobile-menu .login-button{
+        margin-top: 0.5rem;
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 0.3rem 0;
+    }
+
+    .mobile-menu .login-button a{
+        border: none;
+    }
+
+    .is-active{
+        display: block;
+    }
+
+    .is-shadow{
+        box-shadow: 0 0 10px #00000050;
+    }
+}

@@ -8062,7 +8062,7 @@
 											"top": 1132,
 											"width": 199,
 											"height": 13,
-											"text": "+email: EmailField PrimaryKey",
+											"text": "+email: EmailField Unique = True",
 											"horizontalAlignment": 0
 										},
 										{
@@ -8097,7 +8097,7 @@
 											"top": 1147,
 											"width": 199,
 											"height": 13,
-											"text": "+cpf: IntegerField",
+											"text": "+cpf: CharField",
 											"horizontalAlignment": 0
 										},
 										{
@@ -8411,7 +8411,7 @@
 											"top": 791,
 											"width": 199,
 											"height": 13,
-											"text": "Classe_Endereco"
+											"text": "Endereco"
 										},
 										{
 											"_type": "LabelView",
@@ -9038,7 +9038,7 @@
 											"top": 1127,
 											"width": 199,
 											"height": 13,
-											"text": "Classe_RelatorioDeConsumo"
+											"text": "RelatorioDeConsumo"
 										},
 										{
 											"_type": "LabelView",
@@ -10261,7 +10261,7 @@
 											"top": 911,
 											"width": 198.640625,
 											"height": 13,
-											"text": "Classe_CrontroleDeIrrigacao"
+											"text": "CrontroleDeIrrigacao"
 										},
 										{
 											"_type": "LabelView",
@@ -10908,7 +10908,7 @@
 											"top": 1423,
 											"width": 135,
 											"height": 13,
-											"text": "Classe_Consumo"
+											"text": "Consumo"
 										},
 										{
 											"_type": "LabelView",
@@ -13341,9 +13341,9 @@
 										"$ref": "AAAAAAGPoCOymK9cdTo="
 									},
 									"font": "Arial;13;0",
-									"left": 1489,
+									"left": 1488,
 									"top": 929,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -14268,7 +14268,8 @@
 								"$ref": "AAAAAAGO5Otz6h/CCKg="
 							},
 							"name": "email",
-							"type": "EmailField PrimaryKey"
+							"type": "EmailField Unique",
+							"defaultValue": "True"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -14286,7 +14287,7 @@
 								"$ref": "AAAAAAGO5Otz6h/CCKg="
 							},
 							"name": "cpf",
-							"type": "IntegerField"
+							"type": "CharField"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -14388,7 +14389,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGO5OprZRD3szA="
 					},
-					"name": "Classe_Endereco",
+					"name": "Endereco",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -14779,7 +14780,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGO5OprZRD3szA="
 					},
-					"name": "Classe_RelatorioDeConsumo",
+					"name": "RelatorioDeConsumo",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -15100,7 +15101,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGO5OprZRD3szA="
 					},
-					"name": "Classe_CrontroleDeIrrigacao",
+					"name": "CrontroleDeIrrigacao",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -15205,7 +15206,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGO5OprZRD3szA="
 					},
-					"name": "Classe_Consumo",
+					"name": "Consumo",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",

@@ -5,5 +5,6 @@ from . import views
 
 # Define as URLS do Painel (Dashboard) | Consumo de agua
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.painel, name='index'),
+    path('relatorios/', views.relatorios, name='relatorios'),
 ]

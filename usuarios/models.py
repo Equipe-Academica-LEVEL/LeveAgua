@@ -26,6 +26,8 @@ class Usuario(User): # A classe "Usuario" está *herdando* a classe "User"
     # last_login(último login) -> BooleanField
     # --------------------------------------------------
 
+    USERNAME_FIELD = "email"
+
 class Endereco(models.Model): # Classe criada a partir do padrão django "models.Model"
     cep = models.CharField(max_length=9) # "cpf" é CharFIeld para utilização de ".""
     municipio = models.CharField(max_length=255)

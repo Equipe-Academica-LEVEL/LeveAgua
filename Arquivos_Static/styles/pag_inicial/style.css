@@ -1,0 +1,96 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    z-index: 5;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+h1{
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4rem;
+    line-height: 4rem;
+}
+
+/*-----------------------------------------------------------------*/
+/* SEÇÃO 01 */
+
+.section-01{
+    background-image: linear-gradient(#007A53, #099467);
+    color: white;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.section-01 p{
+    font-size: 1.5rem;
+    text-align: justify;
+}
+
+.barragem-ceraima-img{
+    width: 26rem;
+}
+
+.section-01 > .conteudo{
+    width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 8rem 0;
+}
+
+@media screen and (max-width: 1120px){
+    .section-01 > .conteudo{
+        width: 100%;
+        padding: 8rem 3rem;
+    }
+}
+
+.section-01 > .conteudo > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 950px){
+    .section-01 > .conteudo{
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 6rem 3rem;
+    }
+
+    .section-01 p{
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .section-01 h1{
+        text-align: center;
+        font-size: 3rem;
+        line-height: 3rem;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .barragem-ceraima-img{
+        width: 90%;
+    }
+
+    .section-01 > .conteudo{
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 6rem 1rem;
+    }
+}
