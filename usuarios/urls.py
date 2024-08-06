@@ -14,7 +14,5 @@ urlpatterns = [
     path('', views.painelUsuario, name='index'),
     path('entrar/', LoginView.as_view(), name='entrar'),
     path('registrar/', views.registrarUsuario, name='cadastrar'),
-    path('alterar/', views.alterarUsuario, name='alterar'),
-    path('excluir/', views.excluirUsuario, name='excluir'),
-    path('sair/', LogoutView.as_view(next_page='/painel/'), name='sair'),
+    path('sair/', LogoutView.as_view(next_page='/'), name='logout'),
 ]

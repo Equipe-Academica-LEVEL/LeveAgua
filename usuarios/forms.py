@@ -14,7 +14,7 @@ from .models import Usuario, Endereco
 class UsuarioForm(UserCreationForm):
     class Meta:
         model = Usuario
-        fields = ['username','nome', 'sobrenome', 'cpf', 'email', 'data_nascimento','password1', 'password2']
+        fields = ['nome', 'sobrenome','email', 'cpf', 'data_nascimento','password1', 'password2']
 
 class EnderecoForm(forms.ModelForm):
     class Meta:

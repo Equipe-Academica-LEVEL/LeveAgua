@@ -20,8 +20,8 @@
     <script src="{% static 'javascript/headers/header_default.js' %}"></script>
 
     <!-- Links de Estilo - Sessões -->
-    <link rel="stylesheet" href="{% static 'styles/painel/inicio/style.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/painel/relatorios/style.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/usuario/painel-usuario/usuario.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/usuario/painel-usuario/endereco.css' %}">
     <link rel="stylesheet" href="{% static 'styles/painel/configuracoes/style.css' %}">
 
 </head>
@@ -38,8 +38,8 @@
             {% include 'asides/aside_painel-usuario.html' %}
         </aside>
         <section class="conteudo">
-          <section class="section-usuatio">
-          
+          <section class="section-usuario">
+            {% include 'usuario/painel-usuario/usuario.html' %}
           </section>
           <section class="section-endereco is_desactive">
             

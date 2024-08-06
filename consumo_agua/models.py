@@ -27,3 +27,9 @@ class RelatorioDeConsumo(models.Model): # Classe criada a partir do padrão djan
     periodo = models.DurationField() # "models.DurationField" determina um intervalo de tempo
     modelo = models.CharField(max_length=255)
     consumo = models.ForeignKey(Consumo, on_delete=models.CASCADE, related_name='relatorios') # "Consumo, on_delete=models.CASCADE" significa que o Relatório de Consumo correspondente ao Consumo será apagado caso o Consumo seja removido
+
+class ControleDeIrrigacao(models.Model): # Classe criada a partir do padrão django "models.Model"
+    periodo = models.DurationField() # "models.DurationField" determina um intervalo de tempo
+    tolerancia_litros = models.BigIntegerField() # "models.BigIntegerField" é utilizado para grandes dados numéricos
+    tolerancia_tempo = models.BigIntegerField() # ~ ~ ~ ~ ~ ~
+    consumo = models.ForeignKey(Consumo, on_delete=models.CASCADE, related_name='controle') # "Consumo, on_delete=models.CASCADE" significa que o Controle de Irrigação correspondente ao Consumo será apagado caso o Consumo seja removido

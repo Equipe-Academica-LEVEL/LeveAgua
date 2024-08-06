@@ -41,11 +41,13 @@ header{
     background-color: var(--body-color);
     flex-grow: 1;
     z-index: 2;
+    /*display: flex;*/
 }
 
 .main-painel > aside{
     box-shadow: 0 0 10px #00000050;
     z-index: 3;
+    min-width: 12 rem;
 }
 
 .is_desactive{

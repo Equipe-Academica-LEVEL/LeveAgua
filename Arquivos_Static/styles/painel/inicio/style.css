@@ -19,3 +19,25 @@
 .banner p{
     font-size: 1.3rem;
 }
+
+.text-grafico{
+    padding-left: 1rem;
+    padding-top: 2rem;
+    font-size: 1.5em;
+}
+
+.diario{
+    width: 100%;
+}
+
+.grafico-secundario{
+    display: flex;
+}
+
+.grafico-secundario img{
+    width: 50%;
+}
+
+.figura{
+    width: 100%;
+}

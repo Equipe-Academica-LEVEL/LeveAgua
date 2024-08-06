@@ -5,8 +5,9 @@
 # -------------------------------------------------------------------------------------------------------------------------------
 # IMPORTAÇÕES
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from usuarios.forms import UsuarioForm
+from .models import Usuario 
 
 # Autenticação
 from django.contrib.auth.decorators import login_required
@@ -21,7 +22,23 @@ def entrar(request):
 # Página principal do Usuario (index | read) / Endereço incluso
 @login_required
 def painelUsuario(request):
-    return render(request, 'usuario/painel-usuario.html')
+    # Visualização e Alteração de Usuario
+    usuario_unico = request.user  # Obtém o usuário autenticado
+
+    if request.method == 'POST':
+        form_usuario = UsuarioForm(request.POST, instance=usuario_unico)
+        if form_usuario.is_valid():
+            form_usuario.save()
+            return HttpResponseRedirect('/app/?msg=Salvo')
+    else:
+        form_usuario = UsuarioForm(instance=usuario_unico)
+
+    contexto = {
+        'form_usuario': form_usuario, 
+        'usuario': usuario_unico
+    }
+    
+    return render(request, 'usuario/painel-usuario.html', contexto)
 
 # -------------------------------------------------------------------------------------------------------------------------------
 # CRUD Usuário
@@ -36,16 +53,6 @@ def registrarUsuario(request):
     else:
         usuarioCreateForm = UsuarioForm()
     return render(request, 'registration/register.html', {'usuarioCreateForm': usuarioCreateForm})
-
-# Página de alteração do Usuario (update)
-@login_required
-def alterarUsuario(request):
-    return HttpResponse("Pagina de alteração") # imprimi a string na tela (teste)
-
-# Página de exclusão definitiva (Delete)
-@login_required
-def excluirUsuario(request):
-    return HttpResponse("Pagina de excluir") # imprimi a string na tela (teste)
 
 # -------------------------------------------------------------------------------------------------------------------------------
 # CRUD Endereço
