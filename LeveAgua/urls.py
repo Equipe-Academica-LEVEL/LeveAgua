@@ -6,6 +6,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('painel/', include("consumo_agua.urls")), 
     path('usuario/', include("usuarios.urls")),
-    path('', include("features.urls")),
+    path('', include("features.urls")), 
 ]
 

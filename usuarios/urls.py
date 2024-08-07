@@ -4,7 +4,7 @@
 
 # -------------------------------------------------------------------------------------------------------------------------------
 # IMPORTAÇÕES
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth import views as auth_views
 from django.urls import path
 from . import views # Importando a views para urls.py
 
@@ -12,7 +12,7 @@ from . import views # Importando a views para urls.py
 # LINKS
 urlpatterns = [
     path('', views.painelUsuario, name='index'),
-    path('entrar/', LoginView.as_view(), name='entrar'),
+    path('login/', auth_views.LoginView.as_view, name='login'),
     path('registrar/', views.registrarUsuario, name='cadastrar'),
-    path('sair/', LogoutView.as_view(next_page='/'), name='logout'),
+    path('sair/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
 ]

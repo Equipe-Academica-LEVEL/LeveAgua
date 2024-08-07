@@ -6,7 +6,7 @@
 # IMPORTAÇÕES
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from usuarios.forms import UsuarioForm
+from usuarios.forms import alterarUsuarioForm, criarUsuarioForm
 from .models import Usuario 
 
 # Autenticação
@@ -26,12 +26,12 @@ def painelUsuario(request):
     usuario_unico = request.user  # Obtém o usuário autenticado
 
     if request.method == 'POST':
-        form_usuario = UsuarioForm(request.POST, instance=usuario_unico)
+        form_usuario = alterarUsuarioForm(request.POST, instance=usuario_unico)
         if form_usuario.is_valid():
             form_usuario.save()
             return HttpResponseRedirect('/app/?msg=Salvo')
     else:
-        form_usuario = UsuarioForm(instance=usuario_unico)
+        form_usuario = alterarUsuarioForm(instance=usuario_unico)
 
     contexto = {
         'form_usuario': form_usuario, 
