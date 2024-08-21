@@ -1,4 +1,4 @@
-![Diagrama de Classe](z_docs/imagens/logo.png)
+<img src="z_docs/imagens/logo.png" alt="Leveagua" width="50%">
 
 # Projeto Leveagua
 
