@@ -1,0 +1,126 @@
+<!-- TODOS OS ENDEREÇOS DO USUÁRIO -->
+<section class="endereco">
+    <div class="header-endereco">
+        <h1>Endereço</h1>
+        <a href="" class="btn-default adicionar-endereco">+ Endereço</a>
+    </div>
+    <div class="enderecos-cadastrados">
+        <table class="endereco-table">
+            <thead>
+              <tr>
+                <th>Nome da Propriedade</th>
+                <th>Município</th>
+                <th>Distrito</th>
+                <th>Código Postal</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for endereco in enderecos %}
+                <tr data-id="{{ endereco.id }}">
+                  <td>{{endereco.nome_da_propriedade}}</td>
+                  <td>{{endereco.municipio}}</td>
+                  <td>{{endereco.distrito}}</td>
+                  <td>{{endereco.cep}}</td>
+                  <td>
+                      <a class="read-endereco btn-table" href="#" data-id="{{ endereco.id }}" data-url="{% url 'visualizar_endereco' endereco.id %}">Visualizar</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>              
+        </table>
+    </div>
+</section>
+
+<!-- ADICIONAR NOVO ENDEREÇO -->
+<section class="adicionar-endereco-content is_desactive">
+    <div class="header-endereco">
+        <h1>Adicionar Endereço</h1>
+        <div>
+            <a href="" class="btn-default voltar-endereco">Voltar</a>
+        </div>
+    </div>
+    <div class="endereco-form">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form_endereco.as_p }}
+            <button type="submit" name="adicionar_endereco">Adicionar Endereço</button>
+        </form>            
+    </div>
+</section>
+
+<!-- VISUALIZAR ENDEREÇO ESPECÍFICO -->
+<section id="visualizarEndereco" class="visualizar-endereco-content is_desactive">
+    <div class="header-endereco">
+        <h1>Visualizar Endereço</h1>
+        <div>
+            <a href="#" class="btn-default voltar-endereco">Voltar</a>
+        </div>
+    </div>
+    <div class="endereco-cadastrado">
+        <table class="endereco-unico-table">
+            <tbody>
+                <tr>
+                    <th>Nome da Propriedade</th>
+                    <td id="visualizarEnderecoNome"></td>
+                </tr>
+                <tr>
+                    <th>Estado</th>
+                    <td id="visualizarEnderecoEstado"></td>
+                </tr>
+                <tr>
+                    <th>Município</th>
+                    <td id="visualizarEnderecoMunicipio"></td>
+                </tr>
+                <tr>
+                    <th>Distrito</th>
+                    <td id="visualizarEnderecoDistrito"></td>
+                </tr>
+                <tr>
+                    <th>Código Postal</th>
+                    <td id="visualizarEnderecoCep"></td>
+                </tr>
+                <tr>
+                    <th>Complemento</th>
+                    <td id="visualizarEnderecoComplemento"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="btns-do-visualizar">
+        <a href="" class="btn-default editar-endereco">Editar Informações</a>
+        <a href="" class="btn-default delete-endereco">Excluir</a>
+    </div>
+</section>
+
+<!-- EDITAR ENDEREÇO -->
+<section class="editar-endereco-content is_desactive">
+    <div class="header-endereco">
+        <h1>Editar Endereço</h1>
+        <div>
+            <a href="" class="btn-default voltar-endereco">Voltar</a>
+        </div>
+    </div>
+    <div class="endereco-form">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form_endereco.as_p }}
+            <button type="submit" name="adicionar_endereco">Salvar Alterações</button>
+        </form>            
+    </div>
+</section>
+
+<!-- CONFIRMAR DELETAR ENDEREÇO -->
+<section class="deletar-endereco-pop_up is_desactive">
+    <div class="endereco-pop_up">
+        <div class="header-endereco">
+            <h1>Deseja Apagar o Endereço <strong id="endereco-nome">ENDEREÇO</strong>?</h1>
+        </div>
+        <div class="deletar-endereco-question">
+            <form id="form-excluir-endereco" method="post" action="/delete/">
+                {% csrf_token %}
+                <button type="submit" class="btn-default red-modifier tam-modifier">Excluir</button>
+            </form>                      
+            <a id="cancelar-excluir" href="#" class="btn-default tam-modifier">Cancelar</a>           
+        </div>
+    </div>
+</section>

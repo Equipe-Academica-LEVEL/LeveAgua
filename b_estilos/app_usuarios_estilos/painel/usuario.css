@@ -1,0 +1,88 @@
+:root{
+    --borda: #c9c9c9;
+    --fundo: #ffffff;
+}
+
+.section-usuario{
+    background-color: var(--fundo);
+    border: 1px solid var(--borda);
+    flex-grow: 1;
+    margin: 1rem;
+    border-radius: 16px;
+    position: relative;
+}
+
+/* PRINCIPAL */
+
+.usuario-principal{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 3rem 4rem;
+    gap: 1rem;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.usuario-foto{
+    background-color: rgb(239, 239, 239);
+    border: 1px solid var(--borda);
+    border-radius: 50%;
+    width: 12rem;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+.usuario-foto > img{
+    width: 12rem;
+    aspect-ratio: 1/1;
+}
+
+.perfil-nome h1{
+    font-size: 2em;
+}
+
+.perfil-nome p{
+    font-size: 1.2em;
+}
+
+.usuario-informacoes{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0rem 4rem;
+    column-gap: 6rem;
+}
+
+.usuario-informacoes div{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.usuario-informacoes h2{
+    font-size: 1.2rem;
+    color: gray;
+}
+
+.usuario-informacoes p{
+    font-size: 1.3rem;
+}
+
+.usuario-atualizar{
+    position: absolute;
+    bottom: 3rem;
+    right: 4rem;  
+}
+
+.atualizar-informacoes{
+    background-color: #558ed8;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0rem;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    width: 15rem;
+    font-size: 1.1rem;
+}

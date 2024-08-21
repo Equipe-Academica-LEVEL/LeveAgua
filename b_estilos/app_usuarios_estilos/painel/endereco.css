@@ -1,0 +1,126 @@
+:root{
+    --borda: #c9c9c9;
+    --fundo: #ffffff;
+}
+
+.section-endereco{
+    background-color: var(--fundo);
+    border: 1px solid var(--borda);
+    flex-grow: 1;
+    margin: 1rem;
+    padding-top: 2rem;
+    border-radius: 16px;
+    position: relative;
+}
+
+/* ENDEREÇO */
+
+.endereco{
+    padding: 1rem 4rem;
+    
+}
+
+.header-endereco{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.header-endereco::after{
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--borda);
+    color: var(--borda);
+    margin: 1rem 0;
+}
+
+.header-endereco h1{
+    font-size: 1.5rem;
+    
+}
+
+.btn-default{
+    background-color: #558ed8;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0rem;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    width: 15rem;
+    font-size: 1.1rem;
+}
+
+/* TABELA */
+
+th, td{
+    border: 1px solid var(--borda);
+    padding: 0.5rem 2rem;
+    font-size: 1.1rem;
+}
+
+/* ADICIONAR ENDEREÇO */
+
+.adicionar-endereco-content{
+    padding: 1rem 4rem;
+    
+}
+
+/* VISUALIZAR ENDEREÇO */
+.visualizar-endereco-content{
+    padding: 1rem 4rem;
+
+}
+
+.btns-do-visualizar{
+    display: flex;
+    gap: 2rem;
+    position: absolute;
+    bottom: 2rem;
+    right: 4rem;
+}
+
+/* EDITAR ENDEREÇO */
+
+/* CONFIRMAR EXCLUSÃO DE ENDEREÇO */
+.deletar-endereco-pop_up{
+    background-color: #00000050;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 16px;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.endereco-pop_up{
+    background-color: white;
+    border: 1px solid var(--borda);
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+.deletar-endereco-question{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.red-modifier{
+    background-color: red;
+}
+
+.tam-modifier{
+    width: 8rem;
+}
+
+.is_displayflex{
+    display: flex !important;
+}

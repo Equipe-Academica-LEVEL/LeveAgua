@@ -1,0 +1,50 @@
+<!-- Carregando arquivos -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- MetaDados -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- titulo da página -->
+    <title> LeveAgua </title>
+    
+    <!-- Links de Estilo -->
+    {% include 'features/links.html' %}
+
+    <link rel="stylesheet" href="{% static 'pag_inicial/inicio.css' %}">
+    <link rel="stylesheet" href="{% static 'headers/header_default.css' %}">
+    
+    <script src="{% static 'javascript/headers/header_default.js' %}"></script>
+
+</head>
+  <body>
+    <!-- Header -->
+    <header>
+        {% if logado == True %}
+            {% include 'headers/header_joined.html' %}
+        {% else %}
+            {% include 'headers/header_default.html' %}
+        {% endif %} 
+    </header>
+
+    <!-- Main -->
+    <main>
+        <section class="section-01">
+            <div class="conteudo">
+                <div class="texto">
+                    <h1>Medição do Consumo De Água</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris id condimentum risus, sit amet fermentum odio. Vestibulum feugiat in ligula eget pretium.</p>
+                </div>
+                <div class="imagens">
+                    <img class="barragem-ceraima-img" src="{% static 'imagens/pag_inicial/barragem-ceraima.png' %}" alt="">
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        
+    </footer>
+  </body>
+</html>

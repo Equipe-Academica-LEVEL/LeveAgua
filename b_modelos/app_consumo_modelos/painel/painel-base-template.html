@@ -1,0 +1,60 @@
+<!-- Carregando arquivos -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- MetaDados -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- titulo da página -->
+    <title> LeveAgua </title>
+    
+    <!-- Links de Estilo -->
+    {% include 'features/links.html' %}
+
+    <link rel="stylesheet" href="{% static 'app_consumo_estilos/painel/painel.css' %}">
+    <link rel="stylesheet" href="{% static 'headers/header_painel.css' %}">
+    <link rel="stylesheet" href="{% static 'asides/aside_painel.css' %}">
+     
+    <script src="{% static 'scripts/headers/header_default.js' %}"></script>
+    <script src="{% static 'scripts/painel/painel.js' %}"></script>
+
+    <!-- Links de Estilo - Sessões -->
+    <link rel="stylesheet" href="{% static 'app_consumo_estilos/painel/inicio.css' %}">
+    <link rel="stylesheet" href="{% static 'app_consumo_estilos/painel/relatorios.css' %}">
+    <link rel="stylesheet" href="{% static 'app_consumo_estilos/painel/configuracoes.css' %}">
+
+</head>
+  <body>
+    <!-- Header -->
+    <header>
+        {% include 'headers/header_painel.html' %}
+    </header>
+
+    <!-- Main -->
+    <main class="main-painel">
+        <!-- Aside (Navbar) -->
+        <aside class="lateral-bar">
+            {% include 'asides/aside_painel.html' %}
+        </aside>
+        <section class="conteudo">
+          <section class="section-painel-inicio">
+            {% include 'app_consumo_modelos/painel/inicio.html' %}
+          </section>
+          <section class="section-relatorios is_desactive">
+            <h2>Criar Relatório de Consumo</h2>
+            <form method="post">
+              {% csrf_token %}
+              {{ RelatorioCForm.as_p }}
+              <button type="submit">Salvar</button>
+            </form>
+          </section>
+          <section class="section-configurações is_desactive">
+
+          </section>
+          
+        </section>
+    </main>
+  </body>
+</html>

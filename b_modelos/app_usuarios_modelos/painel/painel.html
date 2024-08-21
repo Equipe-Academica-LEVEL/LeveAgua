@@ -1,0 +1,54 @@
+<!-- Carregando arquivos -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- MetaDados -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- titulo da página -->
+    <title> LeveAgua </title>
+    
+    <!-- Links de Estilo -->
+    {% include 'features/links.html' %}
+
+    <link rel="stylesheet" href="{% static 'app_usuarios_estilos/painel/painel.css' %}">
+    <link rel="stylesheet" href="{% static 'headers/header_painel.css' %}">
+    <link rel="stylesheet" href="{% static 'asides/aside_painel.css' %}">
+     
+    <script src="{% static 'script/headers/header_default.js' %}"></script>
+    <script src="{% static 'scripts/painel/usuario.js' %}"></script>
+
+    <!-- Links de Estilo - Sessões -->
+    <link rel="stylesheet" href="{% static 'app_usuarios_estilos/painel/usuario.css' %}">
+    <link rel="stylesheet" href="{% static 'app_usuarios_estilos/painel/endereco.css' %}">
+    <link rel="stylesheet" href="{% static 'app_usuarios_estilos/painel/congifuracoes.css' %}">
+
+</head>
+  <body>
+    <!-- Header -->
+    <header>
+        {% include 'headers/header_painel.html' %}
+    </header>
+
+    <!-- Main -->
+    <main class="main-painel">
+        <!-- Aside (Navbar) -->
+        <aside class="lateral-bar">
+            {% include 'asides/aside_painel-usuario.html' %}
+        </aside>
+        <section class="conteudo">
+          <section class="section-usuario ">
+            {% include 'app_usuarios_modelos/painel/usuario.html' %}
+          </section>
+          <section class="section-endereco is_desactive">
+            {% include 'app_usuarios_modelos/painel/endereco.html' %}
+          </section>
+          <section class="section-configuracoes is_desactive">
+            {% include 'app_usuarios_modelos/painel/configuracoes.html' %}
+          </section>  
+        </section>
+    </main>
+  </body>
+</html>

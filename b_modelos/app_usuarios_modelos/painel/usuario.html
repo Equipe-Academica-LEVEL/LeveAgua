@@ -1,0 +1,45 @@
+{% load static%}
+<section class="mostra-de-dados">
+    <section class="usuario-principal">
+        <div class="perfil-foto">
+            <div class="usuario-foto">
+                <img src="" alt="">
+            </div>
+        </div>
+        <div class="perfil-nome">
+            <h1>{{usuario.nome}} {{usuario.sobrenome}}</h1>
+            <p>{{usuario.email}}</p>
+        </div>
+    </section>
+    <section class="usuario-informacoes">
+        <div class="item-usuario-informacoes">
+            <h2>CPF</h2>
+            <p>{{usuario.cpf}}</p>
+        </div>
+        
+        <div class="item-usuario-informacoes">
+            <h2>Data de Nascimento</h2>
+            <p>{{usuario.data_nascimento}}</p>
+        </div>
+        <div class="item-usuario-informacoes">
+            <h2>Data de Criação</h2>
+            <p>{{usuario.data_criacao}}</p>
+        </div>
+    </section>
+    
+    <section class="usuario-atualizar">
+        <a href="" class="atualizar-informacoes">Atualizar Informações</a>
+    </section>
+    
+    <section class="pop-up_usuario is_desactive">
+        <form action="#" method="post">
+            {% csrf_token %}
+            {{ form_usuario.as_p }}
+            <input type="submit" value="Atualizar">
+        </form>
+    </section>   
+</section>
+
+<section class="atualizacao-de-dados">
+
+</section>
