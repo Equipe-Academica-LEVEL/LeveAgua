@@ -7,7 +7,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 from django.http import HttpResponse, HttpResponseRedirect
-from app_usuarios.forms import alterarUsuarioForm, criarUsuarioForm, entrarUsuarioForm, EnderecoForm
+from app_usuarios.forms import alterarUsuarioForm, criarUsuarioForm, entrarUsuarioForm, EnderecoForm, alterarEnderecoForm
 from .models import Usuario, Endereco 
 
 # Autenticação
@@ -47,45 +47,59 @@ def entrarUsuario(request):
 
 @login_required
 def painelUsuario(request):
-    # Visualização e Alteração de Usuario
     usuario_unico = request.user  # Obtém o usuário autenticado
 
+    # Inicializa os formulários
+    form_usuario = alterarUsuarioForm(instance=usuario_unico)
+    form_endereco = EnderecoForm()
+    form_alterar_endereco = alterarEnderecoForm()
+
     if request.method == 'POST':
-        form_usuario = alterarUsuarioForm(request.POST, instance=usuario_unico)
-        form_endereco = EnderecoForm(request.POST, request.FILES)  # Formulário de endereço com suporte para arquivos (imagens)
+        if 'salvar_usuario' in request.POST:
+            form_usuario = alterarUsuarioForm(request.POST, instance=usuario_unico)
+            if form_usuario.is_valid():
+                form_usuario.save()
+                return HttpResponseRedirect('/usuario')
 
-        if 'salvar_usuario' in request.POST and form_usuario.is_valid():
-            form_usuario.save()
-            return HttpResponseRedirect('/usuario')
+        elif 'adicionar_endereco' in request.POST:
+            form_endereco = EnderecoForm(request.POST, request.FILES)
+            if form_endereco.is_valid():
+                endereco = form_endereco.save(commit=False)
+                endereco.usuario = usuario_unico  # Associa o endereço ao usuário logado
+                endereco.save()
+                return HttpResponseRedirect('/usuario')
 
-        elif 'adicionar_endereco' in request.POST and form_endereco.is_valid():
-            endereco = form_endereco.save(commit=False)
-            endereco.usuario = usuario_unico  # Associa o endereço ao usuário logado
-            endereco.save()
-            return HttpResponseRedirect('/usuario')
-    else:
-        form_usuario = alterarUsuarioForm(instance=usuario_unico)
-        form_endereco = EnderecoForm()  # Formulário vazio para adicionar novo endereço
+        elif 'alterar_endereco' in request.POST:
+            endereco_id = request.POST.get('endereco_id')
+            endereco = get_object_or_404(Endereco, id=endereco_id, usuario=usuario_unico)
+            form_alterar_endereco = alterarEnderecoForm(request.POST, instance=endereco)
+            if form_alterar_endereco.is_valid():
+                form_alterar_endereco.save()
+                return HttpResponseRedirect('/usuario')
 
-    # Endereco
+    # Enderecos do usuário
     enderecos = Endereco.objects.filter(usuario=usuario_unico)
 
-    # Contexto
+    # Contexto para renderização
     contexto = {
-        'form_usuario': form_usuario, 
+        'form_usuario': form_usuario,
         'usuario': usuario_unico,
         'enderecos': enderecos,
-        'form_endereco': form_endereco,  # Adiciona o formulário de endereço ao contexto
+        'form_endereco': form_endereco,
+        'form_alterar_endereco': form_alterar_endereco,
     }
-    
+
     return render(request, 'app_usuarios_modelos/painel/painel.html', contexto)
+
 
 @login_required
 def visualizar_endereco(request, id):
     endereco = get_object_or_404(Endereco, id=id, usuario=request.user)
+    identificador = id
     
     # Retorna os dados do endereço em formato JSON
     data = {
+        'id': identificador,
         'nome_da_propriedade': endereco.nome_da_propriedade,
         'estado': endereco.estado,
         'municipio': endereco.municipio,

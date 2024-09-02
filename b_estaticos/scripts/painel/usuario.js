@@ -11,10 +11,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const sectionEnderecoPrincipal = document.querySelector('.endereco');
     const sectionAdicionarEndereco = document.querySelector('.adicionar-endereco-content');
     const sectionVisualizarEndereco = document.querySelector('.visualizar-endereco-content');
+    const sectionEditarEndereco = document.querySelector('.editar-endereco-content');
     
     // Seleciona os botões
     const btnAdicionarEndereco = document.querySelector('.adicionar-endereco'); // Botão "+ Endereço"
     const btnVoltar = document.querySelectorAll('.voltar-endereco'); // Botões "Voltar"
+    const btnEditarEndereco = document.querySelectorAll('.editar-endereco'); // Botões "Editar Informações"
 
     // Função para lidar com a seleção de navegação
     function handleNavClick(selectedItem) {
@@ -78,12 +80,31 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 
+    // Função para exibir a seção de edição de endereço com os dados
+    function mostrarEditarEndereco(endereco){
+        esconderSecoesEndereco();
+
+        document.querySelector('#endereco_id').value = endereco.id;
+        document.querySelector('.editar_nome_da_propriedade').value = endereco.nome_da_propriedade;
+        //document.querySelector('.editar_estado').value = endereco.estado;
+        //document.querySelector('.editar_municipio').value = endereco.municipio;
+        //document.querySelector('.editar_distrito').value = endereco.distrito;
+        //document.querySelector('.editar_cep').value = endereco.cep;
+        document.querySelector('.editar_complemento').value = endereco.complemento;
+
+        sectionEditarEndereco.classList.remove('is_desactive');
+    }
+
     // Função para exibir a seção de visualizar endereço com os dados
     function mostrarVisualizarEndereco(endereco) {
         esconderSecoesEndereco();
 
         // Preencher a seção de visualização com os dados do endereço
+        document.querySelector('#visualizarEnderecoID').textContent = endereco.id;
+        document.querySelector('#endereco_id').value = endereco.id;
+        document.querySelector('#form-excluir-endereco').action = "delete/" + endereco.id + "/";
         document.querySelector('#visualizarEnderecoNome').textContent = endereco.nome_da_propriedade;
+        document.querySelector('.visualizarEnderecoNome').textContent = endereco.nome_da_propriedade;
         document.querySelector('#visualizarEnderecoEstado').textContent = endereco.estado;
         document.querySelector('#visualizarEnderecoMunicipio').textContent = endereco.municipio;
         document.querySelector('#visualizarEnderecoDistrito').textContent = endereco.distrito;
@@ -91,6 +112,14 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector('#visualizarEnderecoComplemento').textContent = endereco.complemento;
 
         sectionVisualizarEndereco.classList.remove('is_desactive');
+
+        // Adiciona o evento de clique aos botões "Editar informações"
+        btnEditarEndereco.forEach(function(botao) {
+            botao.addEventListener('click', function(event) {
+                event.preventDefault();  // Evita o comportamento padrão do link
+                mostrarEditarEndereco(endereco);
+            });
+        });
     }
 
     // Função para esconder apenas as seções relacionadas a endereços
@@ -98,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function() {
         sectionAdicionarEndereco.classList.add('is_desactive');
         sectionVisualizarEndereco.classList.add('is_desactive');
         sectionEnderecoPrincipal.classList.add('is_desactive');
+        sectionEditarEndereco.classList.add('is_desactive');
     }
 
     // Adiciona o evento de clique ao botão "+ Endereço"
@@ -116,6 +146,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    
+
     // Adiciona o evento de clique aos botões "Visualizar" na tabela de endereços
     const visualizarBotoes = document.querySelectorAll('.read-endereco');
 
@@ -127,6 +159,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+// DELETAR ENDEREÇO
 
 document.addEventListener("DOMContentLoaded", function() {
     // Seleciona todos os botões de exclusão
@@ -162,5 +196,3 @@ document.addEventListener("DOMContentLoaded", function() {
         ocultarPopupExclusao();
     });
 });
-
-

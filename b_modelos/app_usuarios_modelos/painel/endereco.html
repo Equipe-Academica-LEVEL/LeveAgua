@@ -59,6 +59,10 @@
     <div class="endereco-cadastrado">
         <table class="endereco-unico-table">
             <tbody>
+                <tr class="is_desactive">
+                    <th>ID</th>
+                    <td id="visualizarEnderecoID"></td>
+                </tr>
                 <tr>
                     <th>Nome da Propriedade</th>
                     <td id="visualizarEnderecoNome"></td>
@@ -103,8 +107,9 @@
     <div class="endereco-form">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form_endereco.as_p }}
-            <button type="submit" name="adicionar_endereco">Salvar Alterações</button>
+            {{ form_alterar_endereco.as_p }}
+            <input type="hidden" name="endereco_id" id="endereco_id">
+            <button type="submit" name="alterar_endereco">Salvar Alterações</button>
         </form>            
     </div>
 </section>
@@ -113,7 +118,7 @@
 <section class="deletar-endereco-pop_up is_desactive">
     <div class="endereco-pop_up">
         <div class="header-endereco">
-            <h1>Deseja Apagar o Endereço <strong id="endereco-nome">ENDEREÇO</strong>?</h1>
+            <h1>Deseja Apagar o Endereço <strong id="endereco-nome" class="visualizarEnderecoNome"></strong>?</h1>
         </div>
         <div class="deletar-endereco-question">
             <form id="form-excluir-endereco" method="post" action="/delete/">

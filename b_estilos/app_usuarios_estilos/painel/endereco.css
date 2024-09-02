@@ -84,6 +84,10 @@ th, td{
 }
 
 /* EDITAR ENDEREÇO */
+.editar-endereco-content{
+    padding: 1rem 4rem;
+
+}
 
 /* CONFIRMAR EXCLUSÃO DE ENDEREÇO */
 .deletar-endereco-pop_up{

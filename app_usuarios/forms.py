@@ -145,4 +145,48 @@ class EnderecoForm(forms.ModelForm):
         if commit:
             endereco.save()
         return endereco
+    
+class alterarEnderecoForm(forms.ModelForm):
+    class Meta:
+        model = Endereco
+        fields = ['nome_da_propriedade', 'cep', 'municipio', 'estado', 'distrito', 'complemento']
+        labels = {
+            'cep': 'Código Postal',
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super(alterarEnderecoForm, self).__init__(*args, **kwargs)
+        
+        # Ordenando o campo "nome_da_propriedade" para ser o primeiro
+        self.fields['nome_da_propriedade'].widget.attrs.update({'class': 'label-form editar_nome_da_propriedade'})
+        self.fields['cep'].widget.attrs.update({'class': 'label-form editar_cep'})
+        self.fields['municipio'].widget.attrs.update({'class': 'label-form editar_municipio'})
+        self.fields['estado'].widget.attrs.update({'class': 'label-form editar_estado'})
+        self.fields['distrito'].widget.attrs.update({'class': 'label-form editar_distrito'})
+        self.fields['complemento'].widget.attrs.update({'class': 'label-form editar_complemento'})
 
+        # Campos como select com valor padrão
+        self.fields['municipio'].widget = forms.Select(choices=[(self.instance.municipio, self.instance.municipio)])
+        self.fields['estado'].widget = forms.Select(choices=[(self.instance.estado, self.instance.estado)])
+        self.fields['distrito'].widget = forms.Select(choices=[(self.instance.distrito, self.instance.distrito)])
+
+        # Predefine o valor do campo "cep" como vazio (será preenchido dinamicamente)
+        self.fields['cep'].widget.attrs['readonly'] = True  # Definido como readonly para que não possa ser alterado manualmente
+
+    def clean(self):
+        cleaned_data = super().clean()
+        distrito = cleaned_data.get("distrito")
+
+        # Verifica se o distrito é "Ceraima" e define o código postal correspondente
+        if distrito == "Ceraima":
+            cleaned_data['cep'] = "46433-971"
+
+        return cleaned_data
+
+    def save(self, commit=True, user=None):
+        endereco = super().save(commit=False)
+        if user:
+            endereco.usuario = user  # Atribui o usuário autenticado
+        if commit:
+            endereco.save()
+        return endereco
