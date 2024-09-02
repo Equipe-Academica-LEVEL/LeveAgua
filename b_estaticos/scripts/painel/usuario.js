@@ -7,17 +7,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const sectionEndereco = document.querySelector('.section-endereco');
     const sectionConfiguracoes = document.querySelector('.section-configuracoes');
 
-    // Obtém as seções específicas de endereço
-    const sectionEnderecoPrincipal = document.querySelector('.endereco');
-    const sectionAdicionarEndereco = document.querySelector('.adicionar-endereco-content');
-    const sectionVisualizarEndereco = document.querySelector('.visualizar-endereco-content');
-    const sectionEditarEndereco = document.querySelector('.editar-endereco-content');
-    
-    // Seleciona os botões
-    const btnAdicionarEndereco = document.querySelector('.adicionar-endereco'); // Botão "+ Endereço"
-    const btnVoltar = document.querySelectorAll('.voltar-endereco'); // Botões "Voltar"
-    const btnEditarEndereco = document.querySelectorAll('.editar-endereco'); // Botões "Editar Informações"
-
     // Função para lidar com a seleção de navegação
     function handleNavClick(selectedItem) {
         // Remove a classe 'is-selected' de todos os itens
@@ -49,6 +38,80 @@ document.addEventListener("DOMContentLoaded", function() {
             handleNavClick(this);
         });
     });
+
+// -------------------------------------------------------------------------------------------
+// SEÇÃO DE USUÁRIOS
+
+// Obtém as seções específicas de usuário
+const sectionDadosUsuario = document.querySelector('.mostra-de-dados_content');
+const sectionEditarUsuario = document.querySelector('.atualizar_usuario_content');
+const sectionExcluirUsuario = document.querySelector('.excluir_usuario_content');
+
+// Seleciona os botões
+const btnExcluirConta = document.querySelector('.excluir-usuario'); // Botão "Excluir Conta"
+const btnEditarUsuario = document.querySelector('.atualizar-informacoes'); // Botão "Atualizar Informações"
+const btnVoltarUsuario = document.querySelectorAll('.voltar-usuario'); // Botões "Voltar"
+
+// Função para esconder apenas as seções relacionadas a Usuarios
+function esconderSecoesUsuario() {
+    sectionDadosUsuario.classList.add('is_desactive');
+    sectionEditarUsuario.classList.add('is_desactive');
+    sectionExcluirUsuario.classList.add('is_desactive');
+}
+
+function mostrarDadosUsuario(){
+    esconderSecoesUsuario();
+    sectionDadosUsuario.classList.remove('is_desactive');
+}
+
+function mostrarEditarUsuario(){
+    esconderSecoesUsuario();
+    sectionEditarUsuario.classList.remove('is_desactive');
+}
+
+function mostrarExcluirUsuario(){
+    esconderSecoesUsuario();
+    sectionExcluirUsuario.classList.remove('is_desactive');
+}
+
+// Adiciona o evento de clique aos botões "Voltar" de usuario
+btnVoltarUsuario.forEach(function(botao) {
+    botao.addEventListener('click', function(event) {
+        event.preventDefault();  // Evita o comportamento padrão do link
+        mostrarDadosUsuario();
+    });
+});
+
+// Adiciona o evento de clique ao botão "Atualizar Informações"
+if (btnEditarUsuario) {
+    btnEditarUsuario.addEventListener('click', function(event) {
+        event.preventDefault();  // Evita o comportamento padrão do link
+        mostrarEditarUsuario();
+    });
+}
+
+// Adiciona o evento de clique ao botão "Excluir Conta"
+if (btnExcluirConta) {
+    btnExcluirConta.addEventListener('click', function(event) {
+        event.preventDefault();  // Evita o comportamento padrão do link
+        mostrarExcluirUsuario();
+    });
+}
+
+// -------------------------------------------------------------------------------------------
+// SEÇÃO DE ENDEREÇO
+
+    // Obtém as seções específicas de endereço
+    const sectionEnderecoPrincipal = document.querySelector('.endereco');
+    const sectionAdicionarEndereco = document.querySelector('.adicionar-endereco-content');
+    const sectionVisualizarEndereco = document.querySelector('.visualizar-endereco-content');
+    const sectionEditarEndereco = document.querySelector('.editar-endereco-content');
+    
+    // Seleciona os botões
+    const btnAdicionarEndereco = document.querySelector('.adicionar-endereco'); // Botão "+ Endereço"
+    const btnVoltar = document.querySelectorAll('.voltar-endereco'); // Botões "Voltar"
+    const btnEditarEndereco = document.querySelectorAll('.editar-endereco'); // Botões "Editar Informações"
+
 
     // Função para exibir o formulário de adicionar endereço
     function mostrarAdicionarEndereco() {

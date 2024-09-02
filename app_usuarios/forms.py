@@ -61,7 +61,18 @@ class criarUsuarioForm(forms.ModelForm):
 # -------------------------------------------------------------------------------------------------------------------------------
 # Alterar Usuário
 class alterarUsuarioForm(forms.ModelForm):
-    password = ReadOnlyPasswordHashField(label="Senha")
+    password1 = forms.CharField(
+        label='Nova Senha',
+        widget=forms.PasswordInput,
+        required=False,  # Tornando opcional, pois o usuário pode não querer alterar a senha
+        help_text="Deixe em branco se não quiser alterar a senha."
+    )
+    password2 = forms.CharField(
+        label='Repita a Nova Senha',
+        widget=forms.PasswordInput,
+        required=False,  # Tornando opcional
+        help_text="Repita a mesma senha para verificação."
+    )
 
     data_nascimento = forms.DateField(
         label='Data de Nascimento',
@@ -70,12 +81,29 @@ class alterarUsuarioForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ('email', 'password', 'nome', 'sobrenome', 'cpf', 'data_nascimento')
+        fields = ('nome', 'sobrenome', 'cpf', 'data_nascimento')
 
     def __init__(self, *args, **kwargs):
         super(alterarUsuarioForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'label-form' #Adiciona a classe 'label-form'
+            field.widget.attrs['class'] = 'label-form'  # Adiciona a classe 'label-form'
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("As senhas não coincidem.")
+        return password2
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        password1 = self.cleaned_data.get("password1")
+        if password1:  # Se uma nova senha foi fornecida, altere a senha do usuário
+            user.set_password(password1)
+        if commit:
+            user.save()
+        return user
+
 
 # Login do Usuário
 class entrarUsuarioForm(forms.Form):

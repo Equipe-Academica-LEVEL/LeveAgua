@@ -52,7 +52,8 @@ def painelUsuario(request):
     # Inicializa os formulários
     form_usuario = alterarUsuarioForm(instance=usuario_unico)
     form_endereco = EnderecoForm()
-    form_alterar_endereco = alterarEnderecoForm()
+    form_alterar_endereco = None
+    excluir_usuario_erro = None  # Variável para armazenar o erro na exclusão
 
     if request.method == 'POST':
         if 'salvar_usuario' in request.POST:
@@ -77,6 +78,14 @@ def painelUsuario(request):
                 form_alterar_endereco.save()
                 return HttpResponseRedirect('/usuario')
 
+        elif 'excluir_usuario' in request.POST:
+            confirmacao = request.POST.get('confirmacao_exclusao')
+            if confirmacao == "EXCLUIR CONTA":
+                usuario_unico.delete()
+                return redirect('../')  # Redireciona para a página inicial após a exclusão do usuário
+            else:
+                excluir_usuario_erro = "Você deve digitar 'EXCLUIR CONTA' para confirmar a exclusão."
+
     # Enderecos do usuário
     enderecos = Endereco.objects.filter(usuario=usuario_unico)
 
@@ -87,6 +96,7 @@ def painelUsuario(request):
         'enderecos': enderecos,
         'form_endereco': form_endereco,
         'form_alterar_endereco': form_alterar_endereco,
+        'excluir_usuario_erro': excluir_usuario_erro,  # Passa o erro para o template
     }
 
     return render(request, 'app_usuarios_modelos/painel/painel.html', contexto)

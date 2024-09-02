@@ -1,5 +1,7 @@
 {% load static%}
-<section class="mostra-de-dados">
+
+<!-- DADOS DO USUÁRIO -->
+<section class="mostra-de-dados_content">
     <section class="usuario-principal">
         <div class="perfil-foto">
             <div class="usuario-foto">
@@ -28,18 +30,48 @@
     </section>
     
     <section class="usuario-atualizar">
-        <a href="" class="atualizar-informacoes">Atualizar Informações</a>
-    </section>
-    
-    <section class="pop-up_usuario is_desactive">
-        <form action="#" method="post">
-            {% csrf_token %}
-            {{ form_usuario.as_p }}
-            <input type="submit" value="Atualizar">
-        </form>
-    </section>   
+        <a href="" class="btn-usuario-atualizar atualizar-informacoes">Atualizar Informações</a>
+        <a href="" class="btn-usuario-atualizar excluir-usuario">Excluir Conta</a>
+    </section> 
 </section>
 
-<section class="atualizacao-de-dados">
+<!-- ATUALIZAR USUÁRIO -->
+<section class="atualizar_usuario_content is_desactive">
+    <div class="header-usuario">
+        <h1>Editar Usuário</h1>
+        <div>
+            <a href="#" class="btn-default voltar-usuario">Voltar</a>
+        </div>
+    </div>
+    <div class="usuario-form"></div>
+    <form action="#" method="post">
+        <p>Email: {{usuario.email}}</p>
+        {% csrf_token %}
+        {{ form_usuario.as_p }}
+        <input type="submit" name="salvar_usuario" value="Atualizar">
+    </form>
+</section>  
 
+<!-- EXLCUIR USUÁRIO -->
+<section class="excluir_usuario_content is_desactive">
+    <div class="header-usuario">
+        <h1>Excluir Conta</h1>
+        <div>
+            <a href="#" class="btn-default voltar-usuario">Voltar</a>
+        </div>
+    </div>
+    <div class="excluir-usuario-form">
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>
+                Tem certeza que quer excluir a conta de <strong>{{usuario.nome}} {{usuario.sobrenome}}</strong> do CPF <strong>{{usuario.cpf}}</strong>?
+            </p>
+            <p>
+                <label for="confirmacao_exclusao">Escreva "EXCLUIR CONTA" para confirmar a exclusão</label>
+                <input type="text" id="confirmacao_exclusao" name="confirmacao_exclusao" required>
+            </p>
+            <input type="submit" class="btn-usuario-atualizar excluir-usuario" name="excluir_usuario" value="Excluir">
+        </form>
+        
+    </div>
 </section>
