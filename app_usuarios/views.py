@@ -52,7 +52,7 @@ def painelUsuario(request):
     # Inicializa os formulários
     form_usuario = alterarUsuarioForm(instance=usuario_unico)
     form_endereco = EnderecoForm()
-    form_alterar_endereco = None
+    form_alterar_endereco = alterarEnderecoForm
     excluir_usuario_erro = None  # Variável para armazenar o erro na exclusão
 
     if request.method == 'POST':

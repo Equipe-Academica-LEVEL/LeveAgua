@@ -1,16 +1,25 @@
 {% load static %}
-<div class="banner">
-    <h1>LeveAgua</h1>
-    <p>Lorem Ipsum Dolor sla doq</p>
-</div>
-
-<div class="conteudo-principal">
-    <div class="container-graficos">
-        <h2 class="text-grafico">Gráfico de Consumo</h1>
-        <div class="graficos">
-
+<section>
+    <div class="banner">
+        <h1>LeveAgua</h1>
+        <p>Lorem Ipsum Dolor sla doq</p>
+    </div>
+    
+    <div class="conteudo-principal">
+        <div class="container-graficos">
+            <h2 class="text-grafico">Gráfico de Consumo</h1>
+            <div class="graficos">
+                <div class="grafico-dia_content">
+                    <canvas id="grafico-dia"></canvas>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    
+</section>
 
 <script src="{% static 'scripts/painel/painel.js' %}"></script>
+<script type="module" src="{% static 'scripts/painel/graficos/diario.js' %}"></script>
+
+<!-- BIBLIOTECA CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

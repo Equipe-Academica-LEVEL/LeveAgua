@@ -18,11 +18,12 @@ aside{
     gap: 1rem;
 }
 
-.lateral-nav-bar > span{
+.lateral-nav-bar > span, .lateral-nav-bar > a{
     display: flex;
     justify-content: start;
     align-items: center;
     gap: 10px;
+    text-decoration: none;
 
     color: #007A53;
     cursor: pointer;
@@ -33,7 +34,7 @@ aside{
     transition: 1s;
 }
 
-.lateral-nav-bar > span:hover{
+.lateral-nav-bar > span:hover, .lateral-nav-bar > a:hover{
     transition: 1s;
     background-color: #007A53;
     color: white;

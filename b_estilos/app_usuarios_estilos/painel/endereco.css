@@ -119,6 +119,7 @@ th, td{
 
 .red-modifier{
     background-color: red;
+    border-width: 0px !important;
 }
 
 .tam-modifier{

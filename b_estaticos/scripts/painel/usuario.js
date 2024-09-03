@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function(){
     // Obtém todos os elementos de navegação
     const navItems = document.querySelectorAll('.nav-item');
 
@@ -39,67 +39,67 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-// -------------------------------------------------------------------------------------------
-// SEÇÃO DE USUÁRIOS
+    // -------------------------------------------------------------------------------------------
+    // SEÇÃO DE USUÁRIOS
 
-// Obtém as seções específicas de usuário
-const sectionDadosUsuario = document.querySelector('.mostra-de-dados_content');
-const sectionEditarUsuario = document.querySelector('.atualizar_usuario_content');
-const sectionExcluirUsuario = document.querySelector('.excluir_usuario_content');
+    // Obtém as seções específicas de usuário
+    const sectionDadosUsuario = document.querySelector('.mostra-de-dados_content');
+    const sectionEditarUsuario = document.querySelector('.atualizar_usuario_content');
+    const sectionExcluirUsuario = document.querySelector('.excluir_usuario_content');
 
-// Seleciona os botões
-const btnExcluirConta = document.querySelector('.excluir-usuario'); // Botão "Excluir Conta"
-const btnEditarUsuario = document.querySelector('.atualizar-informacoes'); // Botão "Atualizar Informações"
-const btnVoltarUsuario = document.querySelectorAll('.voltar-usuario'); // Botões "Voltar"
+    // Seleciona os botões
+    const btnExcluirConta = document.querySelector('.excluir-usuario'); // Botão "Excluir Conta"
+    const btnEditarUsuario = document.querySelector('.atualizar-informacoes'); // Botão "Atualizar Informações"
+    const btnVoltarUsuario = document.querySelectorAll('.voltar-usuario'); // Botões "Voltar"
 
-// Função para esconder apenas as seções relacionadas a Usuarios
-function esconderSecoesUsuario() {
-    sectionDadosUsuario.classList.add('is_desactive');
-    sectionEditarUsuario.classList.add('is_desactive');
-    sectionExcluirUsuario.classList.add('is_desactive');
-}
+    // Função para esconder apenas as seções relacionadas a Usuarios
+    function esconderSecoesUsuario() {
+        sectionDadosUsuario.classList.add('is_desactive');
+        sectionEditarUsuario.classList.add('is_desactive');
+        sectionExcluirUsuario.classList.add('is_desactive');
+    }
 
-function mostrarDadosUsuario(){
-    esconderSecoesUsuario();
-    sectionDadosUsuario.classList.remove('is_desactive');
-}
+    function mostrarDadosUsuario(){
+        esconderSecoesUsuario();
+        sectionDadosUsuario.classList.remove('is_desactive');
+    }
 
-function mostrarEditarUsuario(){
-    esconderSecoesUsuario();
-    sectionEditarUsuario.classList.remove('is_desactive');
-}
+    function mostrarEditarUsuario(){
+        esconderSecoesUsuario();
+        sectionEditarUsuario.classList.remove('is_desactive');
+    }
 
-function mostrarExcluirUsuario(){
-    esconderSecoesUsuario();
-    sectionExcluirUsuario.classList.remove('is_desactive');
-}
+    function mostrarExcluirUsuario(){
+        esconderSecoesUsuario();
+        sectionExcluirUsuario.classList.remove('is_desactive');
+    }
 
-// Adiciona o evento de clique aos botões "Voltar" de usuario
-btnVoltarUsuario.forEach(function(botao) {
-    botao.addEventListener('click', function(event) {
-        event.preventDefault();  // Evita o comportamento padrão do link
-        mostrarDadosUsuario();
+    // Adiciona o evento de clique aos botões "Voltar" de usuario
+    btnVoltarUsuario.forEach(function(botao) {
+        botao.addEventListener('click', function(event) {
+            event.preventDefault();  // Evita o comportamento padrão do link
+            mostrarDadosUsuario();
+        });
     });
-});
 
-// Adiciona o evento de clique ao botão "Atualizar Informações"
-if (btnEditarUsuario) {
-    btnEditarUsuario.addEventListener('click', function(event) {
-        event.preventDefault();  // Evita o comportamento padrão do link
-        mostrarEditarUsuario();
-    });
-}
+    // Adiciona o evento de clique ao botão "Atualizar Informações"
+    if (btnEditarUsuario) {
+        btnEditarUsuario.addEventListener('click', function(event) {
+            event.preventDefault();  // Evita o comportamento padrão do link
+            mostrarEditarUsuario();
+        });
+    }
 
-// Adiciona o evento de clique ao botão "Excluir Conta"
-if (btnExcluirConta) {
-    btnExcluirConta.addEventListener('click', function(event) {
-        event.preventDefault();  // Evita o comportamento padrão do link
-        mostrarExcluirUsuario();
-    });
-}
+    // Adiciona o evento de clique ao botão "Excluir Conta"
+    if (btnExcluirConta) {
+        btnExcluirConta.addEventListener('click', function(event) {
+            event.preventDefault();  // Evita o comportamento padrão do link
+            mostrarExcluirUsuario();
+        });
+    }
 
-// -------------------------------------------------------------------------------------------
-// SEÇÃO DE ENDEREÇO
+    // -------------------------------------------------------------------------------------------
+    // SEÇÃO DE ENDEREÇO
 
     // Obtém as seções específicas de endereço
     const sectionEnderecoPrincipal = document.querySelector('.endereco');
@@ -146,16 +146,13 @@ if (btnExcluirConta) {
     // Função para exibir a seção de edição de endereço com os dados
     function mostrarEditarEndereco(endereco){
         esconderSecoesEndereco();
+        sectionEditarEndereco.classList.remove('is_desactive');
 
         document.querySelector('#endereco_id').value = endereco.id;
         document.querySelector('.editar_nome_da_propriedade').value = endereco.nome_da_propriedade;
-        //document.querySelector('.editar_estado').value = endereco.estado;
-        //document.querySelector('.editar_municipio').value = endereco.municipio;
-        //document.querySelector('.editar_distrito').value = endereco.distrito;
-        //document.querySelector('.editar_cep').value = endereco.cep;
-        document.querySelector('.editar_complemento').value = endereco.complemento;
 
-        sectionEditarEndereco.classList.remove('is_desactive');
+        document.querySelector('.editar_complemento').value = endereco.complemento;
+        
     }
 
     // Função para exibir a seção de visualizar endereço com os dados
