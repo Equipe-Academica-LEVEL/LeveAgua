@@ -1,25 +1,71 @@
 {% load static %}
-<section>
+<section class="painel-default">
     <div class="banner">
         <h1>LeveAgua</h1>
         <p>Lorem Ipsum Dolor sla doq</p>
     </div>
-    
+    <!-- CONTEÚDO PRINCIPAL DO PAINEL -->
     <div class="conteudo-principal">
-        <div class="container-graficos">
-            <h2 class="text-grafico">Gráfico de Consumo</h1>
+        <!-- GRÁFICOS -->
+        <div class="content-graficos">
+            <div class="header_content-graficos">
+                <h2 class="title-grafico_content">Gráficos de Consumo</h2>
+            </div>
+
             <div class="graficos">
-                <div class="grafico-dia_content">
-                    <canvas id="grafico-dia"></canvas>
+                <!-- GRAFICO DIÁRIO -->
+                <div class="grafico-dia_content default-grafico">
+                    <div class="header_grafico">
+                        <h3 class="title-grafico">Consumo Diário</h3>
+                    </div>
+                    <div class="main_grafico">
+                        <canvas class="canvas-grafico" id="grafico-dia" ></canvas>
+                    </div>
+                </div>
+
+                <!-- GRAFICO SEMANAL -->
+                <div class="grafico-semana_content default-grafico scale50">
+                    <div class="header_grafico">
+                        <h3 class="title-grafico">Consumo Semanal</h3>
+                    </div>
+                    <div class="main_grafico">
+                        <canvas class="canvas-grafico" id="grafico-semana" ></canvas>
+                    </div>
+                </div>
+
+                <!-- GRAFICO ANUAL -->
+                <div class="grafico-ano_content default-grafico scale50">
+                    <div class="header_grafico">
+                        <h3 class="title-grafico">Consumo Anual</h3>
+                    </div>
+                    <div class="main_grafico">
+                        <canvas class="canvas-grafico" id="grafico-ano" ></canvas>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- DESENVOLVIMENTO SUSTENTÁVEL -->
+         <div class="content-sustentavel">
+            <div class="header_content-sustentavel">
+                <h2 class="title-sustentavel_content">Desenvolvimento Sustentável</h2>
+                <p class="title-sustentavel_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sapien enim, mattis vel purus nec, pretium placerat augue.</p>
+                <div class="button-sustentavel-content">
+                    <a href="" class="link-sustentavel">Saiba Mais</a>
+                </div>
+            </div>
+            <div class="img_content-sustentavel">
+                <img class="img-sustentavel" src="{% static 'imagens/painel/sustentabilidade-img.png'}" alt="mulher plantando em horta">
+            </div>
+         </div>
     </div>
     
 </section>
 
 <script src="{% static 'scripts/painel/painel.js' %}"></script>
 <script type="module" src="{% static 'scripts/painel/graficos/diario.js' %}"></script>
+<script type="module" src="{% static 'scripts/painel/graficos/semanal.js' %}"></script>
+<script type="module" src="{% static 'scripts/painel/graficos/anual.js' %}"></script>
 
 <!-- BIBLIOTECA CHART.JS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

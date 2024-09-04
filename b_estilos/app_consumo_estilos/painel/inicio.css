@@ -1,4 +1,16 @@
+:root{
+    --borda: #c9c9c9;
+    --fundo: #ffffff;
+
+    --header-grafico-bg: #EFF8FC;
+    --header-text-grafico: #4284A5;
+}
+
 /* Sessão Inicial */
+
+.painel-default{
+    overflow-y: scroll;
+}
 
 .banner{
     background-image: linear-gradient(#007A53, #00AF78, #128B64);
@@ -20,12 +32,70 @@
     font-size: 1.3rem;
 }
 
-/* GRAFICOS */
+/* SEÇÃO DE GRAFICOS */
 
 .conteudo-principal{
     padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
 }
 
-.conteudo-principal h2{
-    font-size: 1.5em;
+.header_content-graficos{
+    padding-bottom: 1rem;
+}
+
+.title-grafico_content{
+    font-size: 1.7em;
+}
+
+/* GRÁFICOS */
+
+.graficos{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 1.5rem;
+    justify-content: space-between;
+}
+
+.default-grafico{
+    background-color: var(--fundo);
+    box-shadow: 0px 0px 10px #00000050;
+    border-radius: 0.3rem;
+    width: 100%;
+}
+
+.header_grafico{
+    background-color: var(--header-grafico-bg);
+    color: var(--header-text-grafico);
+    padding: 0.8rem 2rem;
+    border-bottom: 1px solid var(--borda);
+    border-radius: 0.3rem 0.3rem 0 0;
+}
+
+.title-grafico{
+    font-size: 1.5rem;
+}
+
+.main_grafico{
+    padding: 1rem 2rem;
+    position: relative;
+}
+
+.canvas-grafico{
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
+.scale50{
+    zoom: 0.49;
+    width: 49%;
+}
+
+/* DESENVOLVIMENTO SUSTENTÁVEL */
+
+.content-sustentavel{
+    display: flex;
+    flex-wrap: wrap;
 }

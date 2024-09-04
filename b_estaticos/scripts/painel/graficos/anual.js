@@ -1,32 +1,30 @@
-// diario.js
+// anual.js
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Labels para cada hora do dia
+    // Labels para os meses do ano
     const labels = [
-        '00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', 
-        '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', 
-        '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'
+        'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
     ];
     
-    // Dados de exemplo para cada hora do dia
+    // Dados de exemplo para cada mês do ano
     const data = [
-        5, 4, 6, 3, 2, 7, 9, 10, 12, 14, 15, 18, 
-        17, 16, 20, 22, 21, 19, 13, 11, 8, 7, 6, 5
+        120, 150, 180, 130, 200, 220, 170, 190, 210, 250, 230, 240
     ];
 
-    const ctx = document.getElementById('grafico-dia').getContext('2d');
+    const ctx = document.getElementById('grafico-ano').getContext('2d');
 
     // Cria o gráfico de linha
     const myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'line', // Tipo de gráfico: linha
         data: {
-            labels: labels,
+            labels: labels, // Labels no eixo X representando os meses
             datasets: [{
-                label: 'Consumo Diário (Litros)',
-                data: data,
+                label: 'Consumo Anual (Litros)',
+                data: data, // Dados de consumo para cada mês
                 fill: false,
-                borderColor: 'rgba(54, 162, 235, 1)',
-                tension: 0.1
+                borderColor: 'rgba(75, 192, 192, 1)', // Cor da linha
+                tension: 0.1 // Suavidade da curva da linha
             }]
         },
         options: {
