@@ -6,49 +6,47 @@
 # IMPORTAÇÕES
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import RelatorioDeConsumoForm
-
-# Autenticação
+from .forms import RelatorioDeConsumoForm, ControleDeIrrigacaoForm
+from .models import ControleDeIrrigacao
 from django.contrib.auth.decorators import login_required
 
 # -------------------------------------------------------------------------------------------------------------------------------
 # PAINEL
 
-# Página principal do Painel
+# Página principal do Painel com Formulário de Controle de Irrigação integrado
 @login_required
 def painel(request):
-    # SEÇÕES
-    # sessao = 1 -> painel inicial
-    # sessao = 2 -> relatorios
-    # sessao = 3 -> configuracoes
-    sessao = 2
+    # Filtra os controles de irrigação do usuário autenticado
+    controles_irrigacao = ControleDeIrrigacao.objects.filter(endereco__usuario=request.user)
 
+    # Inicializa o formulário de Controle de Irrigação
+    if request.method == 'POST':
+        controle_form = ControleDeIrrigacaoForm(request.POST)
+        if controle_form.is_valid():
+            controle = controle_form.save(commit=False)
+            # Atribui o usuário autenticado ao controle através do endereço
+            controle.endereco.usuario = request.user
+            controle.save()
+            return redirect('painel')  # Redirecionar para o painel após salvar
+    else:
+        controle_form = ControleDeIrrigacaoForm()
+
+    # Inicializa o formulário de Relatório de Consumo
     if request.method == 'POST':
         relatorioCForm = RelatorioDeConsumoForm(request.POST)
         if relatorioCForm.is_valid():
             relatorioCForm.save()
-            #return redirect('/painel')  # Redirecionar paraa outra página após o sucesso
     else:
-            relatorioCForm = RelatorioDeConsumoForm()
-    return render(request, 'app_consumo_modelos/painel/painel.html', {'relatorioCForm': relatorioCForm})
-    
+        relatorioCForm = RelatorioDeConsumoForm()
 
-    """ if sessao == 1:
-        return render(request, "painel/painel.html")
-    elif sessao == 2:
-        if request.method == 'POST':
-            relatorioCForm = RelatorioDeConsumoForm(request.POST)
-            if relatorioCForm.is_valid():
-                relatorioCForm.save()
-                #return redirect('/painel')  # Redirecionar paraa outra página após o sucesso
-        else:
-                relatorioCForm = RelatorioDeConsumoForm()
-        return render(request, 'painel/painel.html', {'relatorioCForm': relatorioCForm})
-    elif sessao == 3:
-        return render(request, "painel/painel.html")
-    else:
-        return HttpResponse("erro, página não encontrada") """ 
+    # Adiciona os formulários e os controles ao contexto
+    contexto = {
+        'relatorioCForm': relatorioCForm,
+        'controle_form': controle_form,
+        'controles_irrigacao': controles_irrigacao,
+    }
 
+    return render(request, 'app_consumo_modelos/painel/painel.html', contexto)
 
 # -------------------------------------------------------------------------------------------------------------------------------
 # CRUD Consumo

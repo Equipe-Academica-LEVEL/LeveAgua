@@ -35,7 +35,7 @@ class RelatorioDeConsumo(models.Model): # Classe criada a partir do padrão djan
 class ControleDeIrrigacao(models.Model): # Classe criada a partir do padrão django "models.Model"
     periodo = models.DurationField() # "models.DurationField" determina um intervalo de tempo
     tolerancia_litros = models.BigIntegerField() # "models.BigIntegerField" é utilizado para grandes dados numéricos
-    tolerancia_tempo = models.BigIntegerField() # ~ ~ ~ ~ ~ ~
+    tolerancia_tempo = models.BigIntegerField(default=0) # ~ ~ ~ ~ ~ ~
     
     consumo = models.ForeignKey(Consumo, on_delete=models.CASCADE, related_name='controleIrrigacao_consumo') # "Consumo, on_delete=models.CASCADE" significa que o Controle de Irrigação correspondente ao Consumo será apagado caso o Consumo seja removido
     endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE, related_name='controleIrrigacao_endereco') # "Endereco, on_delete=models.CASCADE" significa que o endereço correspondente ao usuário será apagado caso o usuário seja removido

@@ -1,5 +1,5 @@
 {% load static %}
-<section class="painel-default">
+<section class="painel-default is_desactive">
     <div class="banner">
         <h1>LeveAgua</h1>
         <p>Lorem Ipsum Dolor sla doq</p>
@@ -45,22 +45,96 @@
             </div>
         </div>
 
+        <!-- CONTROLE DE IRRIGAÇÃO -->
+         <div class="content-controle_irrigacao">
+            <div class="header_content-controle_irrigacao">
+                <h2 class="title-controle_irrigacao_content">Controle de Irrigação</h2>
+                <a href="" class="btn-default adicionar-controle">+ Controle</a>
+            </div>
+            <div class="main_content-controle_irrigacao">
+                <table class="controle_irrigacao-table">
+                    <thead>
+                        <tr>
+                            <th>Tipo de controle</th>
+                            <th>Início</th>
+                            <th>Fim</th>
+                            <th>Tolerância (tempo)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for controle in controles_irrigacao %}
+                        <tr data-id="{{ controle.id }}">
+                            <td>{{ controle.tipo_controle }}</td>
+                            <td>{{ controle.periodo.inicio }}</td>
+                            <td>{{ controle.periodo.fim }}</td>
+                            <td>{{ controle.tolerancia_tempo }} minutos</td>
+                            <td>
+                                <a class="read-controle btn-table" href="#" data-id="{{ controle.id }}" data-url="{% url 'visualizar_controle' controle.id %}">Visualizar</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">Nenhum controle de irrigação encontrado</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>              
+                </table>
+                
+            </div>
+         </div>
+
         <!-- DESENVOLVIMENTO SUSTENTÁVEL -->
          <div class="content-sustentavel">
-            <div class="header_content-sustentavel">
-                <h2 class="title-sustentavel_content">Desenvolvimento Sustentável</h2>
-                <p class="title-sustentavel_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sapien enim, mattis vel purus nec, pretium placerat augue.</p>
+            <div class="header_content-sustentavel deafult_content-sustentavel">
+                <h2 class="title-sustentavel_content">Projeto Público de Irrigação em Ceraíma</h2>
+                <p class="text-sustentavel_content">Como o Projeto Público de Irrigação Ceraíma, inicialmente afetado por estiagens severas, superou desafios hídricos e impulsionou a retomada da produção agrícola</p>
                 <div class="button-sustentavel-content">
-                    <a href="" class="link-sustentavel">Saiba Mais</a>
+                    <a  target="_blank" href="https://www.codevasf.gov.br/linhas-de-negocios/agricultura-irrigada/projetos-de-irrigacao/em-producao/ceraima" class="link-sustentavel">Saiba Mais</a>
                 </div>
             </div>
-            <div class="img_content-sustentavel">
-                <img class="img-sustentavel" src="{% static 'imagens/painel/sustentabilidade-img.png'}" alt="mulher plantando em horta">
+            <div class="img_content-sustentavel deafult_content-sustentavel">
+                <img class="img-sustentavel" src="{% static 'imagens/painel/sustentabilidade-img.png' %}" alt="mulher plantando em horta">
             </div>
          </div>
     </div>
-    
+
+    <!-- RODAPÉ -->
+    <footer class="footer-painel-inicio">
+        <div class="logo-ifbaino_content">
+            <img class="logo-ifbaiano" src="{% static 'imagens/logo/logo-ifbaiano.png' %}" alt="logo do if baiano campus guanambi">
+        </div>
+        <div class="direitos-reservados_content">
+            <p>
+                <a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>  
+                    Projeto LEVEÁGUA
+                </a>
+            </p>
+            <p>Todos os direitos reservados a Equipe de Desenvolvimento LEVE ™</p>
+        </div>
+        <div class="logo-ceteia_content">
+            <img class="logo-ceteia" src="{% static 'imagens/logo/logo-ceteia.png' %}" alt="logo do ceteia do if baiano campus guanambi">
+        </div>
+    </footer>
 </section>
+
+<!-- ADICIONAR NOVO CONTROLE DE IRRIGAÇÃO -->
+<section class="adicionar-controle-irrigacao-content">
+    <div class="header-crud-controle-irrigacao">
+        <h1>Adicionar Controle de Irrigação</h1>
+        <div>
+            <a href="" class="btn-default voltar-painel">Voltar</a>
+        </div>
+    </div>
+    <div class="controle-irrigacao-form">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ controle_form.as_p }}
+            <button type="submit" name="adicionar_controle_irrigacao">Adicionar Controle de Irrigação</button>
+        </form>            
+    </div>
+</section>
+
 
 <script src="{% static 'scripts/painel/painel.js' %}"></script>
 <script type="module" src="{% static 'scripts/painel/graficos/diario.js' %}"></script>
